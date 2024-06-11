@@ -2,6 +2,12 @@
   "name": "animex",
   "module": "index.ts",
   "type": "module",
+  "scripts": {
+    "dev": "bun --watch src/index.ts",
+    "build": "bun build src/index.ts",
+    "start": "NODE_ENV=production bun src/index.ts",
+    "test": "bun test"
+  },
   "devDependencies": {
     "@types/bun": "latest"
   },
@@ -9,6 +15,7 @@
     "typescript": "^5.0.0"
   },
   "dependencies": {
-    "@consumet/extensions": "^1.6.0"
+    "@consumet/extensions": "^1.6.0",
+    "elysia": "^1.0.23"
   }
 }

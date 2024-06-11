@@ -1,4 +1,4 @@
-# animex
+# animeflix-backend
 
 To install dependencies:
 
