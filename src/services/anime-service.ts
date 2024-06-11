@@ -13,6 +13,8 @@ interface IAnimeService {
   getTopAiring(page: string | undefined): Promise<ISearch<IAnimeResult>>;
 
   getAnimeInfo(animeUrl: string | undefined): Promise<IAnimeResult>;
+
+  getAnimeList(page: string | undefined): Promise<ISearch<IAnimeResult>>;
 }
 
 // Declare the AnimeService class
@@ -39,7 +41,7 @@ export class AnimeService implements IAnimeService {
   getEpisodeServersByEpisodeId = async (episodeId: string | undefined): Promise<IEpisodeServer[]> => {
     if (!episodeId) throw new Error('Anime name is required');
 
-    return await this.animeProvider.fetchEpisodeServersByNameAndEpisodeNumber(episodeId);
+    return await this.animeProvider.fetchEpisodeServersByEpisodeId(episodeId);
   }
 
   getRecentEpisodes = async (page: string | undefined) => {

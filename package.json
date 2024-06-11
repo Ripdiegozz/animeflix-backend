@@ -17,6 +17,7 @@
   "dependencies": {
     "@consumet/extensions": "^1.6.0",
     "@elysiajs/cors": "^1.0.2",
+    "@elysiajs/html": "^1.0.2",
     "@elysiajs/swagger": "^1.0.5",
     "elysia": "^1.0.23"
   }

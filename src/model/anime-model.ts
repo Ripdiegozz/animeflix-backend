@@ -17,7 +17,7 @@ export interface IAnimeProvider {
   fetchRecentEpisodes(page: number): Promise<ISearch<IAnimeResult>>
 
   // Fetch episode servers by name and episode number
-  fetchEpisodeServersByNameAndEpisodeNumber(animeName: string, episodeNumber: string): Promise<IEpisodeServer[]>
+  fetchEpisodeServersByEpisodeId(episodeId: string): Promise<IEpisodeServer[]>
 
   // Fetch top airing animes
   fetchTopAnimesAiring(page: number): Promise<ISearch<IAnimeResult>>
@@ -34,30 +34,58 @@ export class AnimeProvider implements IAnimeProvider{
     animeName: string,
     episodeNumber: string
   ): Promise<ISource> {
-    return this.provider.fetchEpisodeSources(`${animeName}-episode-${episodeNumber}`);
+    try {
+      return this.provider.fetchEpisodeSources(`${animeName}-episode-${episodeNumber}`);
+    } catch (error) {
+      throw new Error(`Failed to fetch episode sources for ${animeName} episode ${episodeNumber}`);
+    }
   }
 
-  fetchEpisodeServersByNameAndEpisodeNumber(episodeId: string): Promise<IEpisodeServer[]> {
-    return this.provider.fetchEpisodeServers(episodeId);
+  fetchEpisodeServersByEpisodeId(episodeId: string): Promise<IEpisodeServer[]> {
+    try {
+      return this.provider.fetchEpisodeServers(episodeId);
+    } catch (error) {
+      throw new Error(`Failed to fetch episode servers for episode ${episodeId}`);
+    }
   }
 
   searchAnime(animeName: string): Promise<ISearch<IAnimeResult>> {
-    return this.provider.search(animeName);
+    try {
+      return this.provider.search(animeName);
+    } catch (error) {
+      throw new Error(`Failed to search anime by name: ${animeName}`);
+    }
   }
 
   fetchRecentEpisodes(page: number): Promise<ISearch<IAnimeResult>> {
-    return this.provider.fetchRecentEpisodes(page);
+    try {
+      return this.provider.fetchRecentEpisodes(page);
+    } catch (error) {
+      throw new Error(`Failed to fetch recent episodes`);
+    }
   }
 
   fetchTopAnimesAiring(page: number): Promise<ISearch<IAnimeResult>> {
-    return this.provider.fetchTopAiring(page);
+    try {
+      return this.provider.fetchTopAiring(page);
+    } catch (error) {
+      throw new Error(`Failed to fetch top airing animes`);
+    }
   }
 
   fetchAnimeInfo(animeUrl: string): Promise<IAnimeResult> {
-    return this.provider.fetchAnimeInfo(animeUrl);
+    try {
+      return this.provider.fetchAnimeInfo(animeUrl);
+    } catch (error) {
+      throw new Error(`Failed to fetch anime info for ${animeUrl}`);
+    }
   }
 
   fetchAnimeList(page: number): Promise<ISearch<IAnimeResult>> {
-    return this.provider.fetchAnimeList(page);
+    try {
+      return this.provider.fetchAnimeList(page);
+    } catch (error) {
+      throw new Error(`Failed to fetch anime list`);
+    }
   }
 }
