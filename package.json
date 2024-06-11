@@ -1,0 +1,14 @@
+{
+  "name": "animex",
+  "module": "index.ts",
+  "type": "module",
+  "devDependencies": {
+    "@types/bun": "latest"
+  },
+  "peerDependencies": {
+    "typescript": "^5.0.0"
+  },
+  "dependencies": {
+    "@consumet/extensions": "^1.6.0"
+  }
+}
