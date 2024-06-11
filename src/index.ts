@@ -3,6 +3,7 @@ import { AnimeService } from "./services/anime-service";
 import { cors } from "@elysiajs/cors";
 import { swagger } from "@elysiajs/swagger";
 import { html } from "@elysiajs/html";
+import { Logestic } from "logestic";
 
 // Inject services availables in the application
 const animeService = new AnimeService();
@@ -25,11 +26,10 @@ new Elysia()
     })
   )
   .use(html())
+  // Log all requests to the console
+  .use(Logestic.preset("fancy"))
   // Define the routes for the API
-  .get(
-    "/",
-    () => Bun.file('src/static/index.html')
-  ) // Root route
+  .get("/", () => Bun.file("src/static/index.html")) // Root route
   .get("/api/v1/anime/search", ({ query }) => {
     // Search an anime by query
     const { q } = query;
@@ -78,9 +78,11 @@ new Elysia()
   .onError(({ code }) => {
     // Handle errors
     if (code === "NOT_FOUND")
-      return "Route not found :( - Go back to homepage at http://localhost:8080/";
+      return Bun.file('src/static/404.html');
   })
   .listen(8080);
 
 console.log("🦊 AnimeFlix REST API is running on http://localhost:8080/ 🚀");
-console.log("📚 Check the API documentation at http://localhost:8080/api/v1/swagger 📖");
+console.log(
+  "📚 Check the API documentation at http://localhost:8080/api/v1/swagger 📖"
+);
