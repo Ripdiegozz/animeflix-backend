@@ -52,22 +52,35 @@ export const App = new Elysia()
     })
   )
   // Define the routes for the API
+
+  /**
+   * Root route.
+   * Returns the index page.
+   */
   .get("/", () => Bun.file("src/static/index.html"), {
     tags: ["Default"],
     response: {
       200: t.Any({ description: "Index page retrieved correctly." }),
     },
-  }) // Root route
+  })
+  
+  /**
+   * 404 route.
+   * Returns the 404 page.
+   */
   .get("/404", () => Bun.file("src/static/404.html"), {
     tags: ["Default"],
     response: {
       200: t.Any({ description: "404 page retrieved correctly." }),
     },
-  }) // 404 route
+  })
+  
+  // Handle errors
   .onError(({ code }) => {
-    // Handle errors
     if (code === "NOT_FOUND") return redirect("/404");
   })
+  
+  // Start listening on port 8080
   .listen(8080);
 
 console.log("🦊 Animeflix REST API is running on http://localhost:8080/ 🚀");

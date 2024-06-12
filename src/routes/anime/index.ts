@@ -5,13 +5,22 @@ import { AnimeService } from "@/services/anime-service";
 // Inject services availables in the application
 const animeService = new AnimeService();
 
+/**
+ * Defines the routes for anime-related endpoints.
+ * @param app - The ElysiaJS application.
+ * @returns The modified ElysiaJS application.
+ */
 export default (app: typeof App) => {
   app
     .get(
       "/search",
-      // @ts-expect-error - Ignore the error because cannot cast the response to a specific squema
+      /**
+       * Search for an anime by query.
+       * @param query - The query parameters.
+       * @returns The search results.
+      */
+      // @ts-expect-error - Ignore the error because cannot cast the response to a specific schema
       ({ query }) => {
-        // Search an anime by query
         const { q, page } = query;
 
         return animeService.searchAnimeByQuery(q, page);
@@ -57,8 +66,12 @@ export default (app: typeof App) => {
     )
     .get(
       "/episode/sources",
+      /**
+       * Get episode sources by name and episode number.
+       * @param query - The query parameters.
+       * @returns The episode sources.
+       */
       ({ query }) => {
-        // Get episode sources by name and episode number
         const { animeName, episodeNumber } = query;
 
         return animeService.getEpisodeSourcesByNameAndEpisodeNumber(
@@ -107,8 +120,12 @@ export default (app: typeof App) => {
     )
     .get(
       "/episode/servers",
+      /**
+       * Get episode servers by episode id.
+       * @param query - The query parameters.
+       * @returns The episode servers.
+       */
       ({ query }) => {
-        // Get episode servers by episode id
         const { episodeId } = query;
 
         return animeService.getEpisodeServersByEpisodeId(episodeId);
@@ -142,9 +159,13 @@ export default (app: typeof App) => {
     )
     .get(
       "/recent",
-      // @ts-expect-error - Ignore the error because cannot cast the response to a specific squema
+      /**
+       * Get recent episodes.
+       * @param query - The query parameters.
+       * @returns The recent episodes.
+      */
+      // @ts-expect-error - Ignore the error because cannot cast the response to a specific schema
       ({ query }) => {
-        // Get recent episodes
         const { page } = query;
 
         return animeService.getRecentEpisodes(page);
@@ -186,9 +207,13 @@ export default (app: typeof App) => {
     )
     .get(
       "/top",
-      // @ts-expect-error - Ignore the error because cannot cast the response to a specific squema
+      /**
+       * Get top airing animes.
+       * @param query - The query parameters.
+       * @returns The top airing animes.
+      */
+      // @ts-expect-error - Ignore the error because cannot cast the response to a specific schema
       ({ query }) => {
-        // Get top airing animes
         const { page } = query;
 
         return animeService.getTopAiring(page);
@@ -231,9 +256,13 @@ export default (app: typeof App) => {
     )
     .get(
       "/list",
-      // @ts-expect-error - Ignore the error because cannot cast the response to a specific squema
+      /**
+       * Get anime list.
+       * @param query - The query parameters.
+       * @returns The anime list.
+      */
+      // @ts-expect-error - Ignore the error because cannot cast the response to a specific schema
       ({ query }) => {
-        // Get anime list
         const { page } = query;
 
         return animeService.getAnimeList(page);
@@ -275,9 +304,13 @@ export default (app: typeof App) => {
     )
     .get(
       "/:animeName",
-      // @ts-expect-error - Ignore the error because cannot cast the response to a specific squema
+      /**
+       * Get anime info by name.
+       * @param params - The route parameters.
+       * @returns The anime info.
+      */
+      // @ts-expect-error - Ignore the error because cannot cast the response to a specific schema
       ({ params }) => {
-        // Get anime info by name
         const { animeName } = params;
 
         return animeService.getAnimeInfo(animeName);

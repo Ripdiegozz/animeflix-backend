@@ -26,10 +26,21 @@ export interface IAnimeProvider {
   fetchAnimeInfo(animeUrl: string): Promise<IAnimeResult>
 }
 
-export class AnimeProvider implements IAnimeProvider{
-  // Declare the provider as a private field, it can be changed to any of the ANIME enum values
+/**
+ * Represents an AnimeProvider that implements the IAnimeProvider interface.
+ * This class provides methods to fetch anime episode sources, episode servers, search anime, fetch recent episodes,
+ * fetch top airing animes, fetch anime info, and fetch anime list.
+ */
+export class AnimeProvider implements IAnimeProvider {
   private provider = new ANIME.Gogoanime();
 
+  /**
+   * Fetches the episode sources for a given anime name and episode number.
+   * @param animeName - The name of the anime.
+   * @param episodeNumber - The episode number.
+   * @returns A promise that resolves to the episode sources.
+   * @throws An error if the episode sources cannot be fetched.
+   */
   fetchEpisodeSourcesByNameAndEpisodeNumber(
     animeName: string,
     episodeNumber: string
@@ -41,6 +52,12 @@ export class AnimeProvider implements IAnimeProvider{
     }
   }
 
+  /**
+   * Fetches the episode servers for a given episode ID.
+   * @param episodeId - The ID of the episode.
+   * @returns A promise that resolves to the episode servers.
+   * @throws An error if the episode servers cannot be fetched.
+   */
   fetchEpisodeServersByEpisodeId(episodeId: string): Promise<IEpisodeServer[]> {
     try {
       return this.provider.fetchEpisodeServers(episodeId);
@@ -49,6 +66,13 @@ export class AnimeProvider implements IAnimeProvider{
     }
   }
 
+  /**
+   * Searches for an anime by name and page number.
+   * @param animeName - The name of the anime.
+   * @param page - The page number.
+   * @returns A promise that resolves to the search results.
+   * @throws An error if the anime search fails.
+   */
   searchAnime(animeName: string, page: number): Promise<ISearch<IAnimeResult>> {
     try {
       return this.provider.search(animeName, page);
@@ -57,6 +81,12 @@ export class AnimeProvider implements IAnimeProvider{
     }
   }
 
+  /**
+   * Fetches the recent episodes by page number.
+   * @param page - The page number.
+   * @returns A promise that resolves to the search results.
+   * @throws An error if the recent episodes cannot be fetched.
+   */
   fetchRecentEpisodes(page: number): Promise<ISearch<IAnimeResult>> {
     try {
       return this.provider.fetchRecentEpisodes(page);
@@ -65,6 +95,12 @@ export class AnimeProvider implements IAnimeProvider{
     }
   }
 
+  /**
+   * Fetches the top airing animes by page number.
+   * @param page - The page number.
+   * @returns A promise that resolves to the search results.
+   * @throws An error if the top airing animes cannot be fetched.
+   */
   fetchTopAnimesAiring(page: number): Promise<ISearch<IAnimeResult>> {
     try {
       return this.provider.fetchTopAiring(page);
@@ -73,6 +109,12 @@ export class AnimeProvider implements IAnimeProvider{
     }
   }
 
+  /**
+   * Fetches the anime info for a given anime URL.
+   * @param animeUrl - The URL of the anime.
+   * @returns A promise that resolves to the anime info.
+   * @throws An error if the anime info cannot be fetched.
+   */
   fetchAnimeInfo(animeUrl: string): Promise<IAnimeResult> {
     try {
       return this.provider.fetchAnimeInfo(animeUrl);
@@ -81,6 +123,12 @@ export class AnimeProvider implements IAnimeProvider{
     }
   }
 
+  /**
+   * Fetches the anime list by page number.
+   * @param page - The page number.
+   * @returns A promise that resolves to the search results.
+   * @throws An error if the anime list cannot be fetched.
+   */
   fetchAnimeList(page: number): Promise<ISearch<IAnimeResult>> {
     try {
       return this.provider.fetchAnimeList(page);

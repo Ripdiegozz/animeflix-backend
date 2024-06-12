@@ -5,16 +5,24 @@ import { MangaService } from "@/services/manga-service";
 // Inject the manga service
 const mangaService = new MangaService();
 
+/**
+ * Defines the routes for manga-related endpoints.
+ * @param app - The Express application.
+ * @returns The modified Express application.
+ */
 export default (app: typeof App) => {
   // @ts-ignore -> Ignore the warning
   app
     .get(
       "/search",
-      // @ts-expect-error - Ignore the error because cannot cast the response to a specific squema
+      /**
+       * Search for a manga by query.
+       * @param query - The query parameters.
+       * @returns The search results.
+      */
+      // @ts-expect-error - Ignore the error because cannot cast the response to a specific schema
       ({ query }) => {
-        // Search a manga by query
         const { q, page } = query;
-
         return mangaService.searchMangaByQuery(q, page);
       },
       {
@@ -56,11 +64,14 @@ export default (app: typeof App) => {
     )
     .get(
       "/info",
-      // @ts-expect-error - Ignore the error because cannot cast the response to a specific squema
+      /**
+       * Get manga info by URL.
+       * @param query - The query parameters.
+       * @returns The manga info.
+      */
+      // @ts-expect-error - Ignore the error because cannot cast the response to a specific schema
       ({ query }) => {
-        // Get manga info by url
         const { mangaId } = query;
-
         return mangaService.getMangaInfo(mangaId);
       },
       {
@@ -92,7 +103,7 @@ export default (app: typeof App) => {
               ),
               image: t.String(),
             },
-            { description: "Manga info retrieved correctly by url." }
+            { description: "Manga info retrieved correctly by URL." }
           ),
           500: t.Object(
             {
@@ -106,11 +117,14 @@ export default (app: typeof App) => {
     )
     .get(
       "/list",
-      // @ts-expect-error - Ignore the error because cannot cast the response to a specific squema
+      /**
+       * Get manga list by page.
+       * @param query - The query parameters.
+       * @returns The manga list.
+      */
+      // @ts-expect-error - Ignore the error because cannot cast the response to a specific schema
       ({ query }) => {
-        // Get manga list by page
         const { page } = query;
-
         return mangaService.getMangaList(page);
       },
       {
@@ -151,11 +165,14 @@ export default (app: typeof App) => {
     )
     .get(
       "/recent",
-      // @ts-expect-error - Ignore the error because cannot cast the response to a specific squema
+      /**
+       * Get recent manga by page.
+       * @param query - The query parameters.
+       * @returns The recent manga.
+      */
+      // @ts-expect-error - Ignore the error because cannot cast the response to a specific schema
       ({ query }) => {
-        // Get recent manga by page
         const { page } = query;
-
         return mangaService.getRecentManga(page);
       },
       {
@@ -196,11 +213,14 @@ export default (app: typeof App) => {
     )
     .get(
       "/popular",
-      // @ts-expect-error - Ignore the error because cannot cast the response to a specific squema
+      /**
+       * Get popular manga by page.
+       * @param query - The query parameters.
+       * @returns The popular manga.
+      */
+      // @ts-expect-error - Ignore the error because cannot cast the response to a specific schema
       ({ query }) => {
-        // Get popular manga by page
         const { page } = query;
-
         return mangaService.getPopularManga(page);
       },
       {
@@ -241,9 +261,12 @@ export default (app: typeof App) => {
     )
     .get(
       "/random",
-      // @ts-expect-error - Ignore the error because cannot cast the response to a specific squema
+      /**
+       * Get random manga.
+       * @returns The random manga.
+      */
+      // @ts-expect-error - Ignore the error because cannot cast the response to a specific schema
       () => {
-        // Get random manga
         return mangaService.getRandomManga();
       },
       {
