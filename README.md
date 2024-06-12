@@ -1,6 +1,6 @@
-# Animeflix API
+# 🦊💻 Animeflix API
 
-This project provides an API built with Bun, Elysiajs, and Consumet.ts to offer data and streaming links for anime and manga.
+This project provides an API built with Bun, Elysiajs, and Consumet.ts to offer data and streaming/reading links for anime and manga.
 
 ## Getting Started 🚀
 
@@ -14,10 +14,10 @@ Before you begin, ensure you have met the following requirements:
   
 ```bash
 # Example for installing Bun
-curl -fsSL https://bun.sh/install | bash
+curl -fsSL https://bun.sh/install | bash # for macOS, Linux, and WSL
 
-# Example for installing Node.js
-sudo apt install nodejs
+# Example for installing Bun through npm
+npm install -g bun
 ```
 
 ### Installation 💥
@@ -27,8 +27,8 @@ Follow these steps to set up the development environment:
 1. **Clone the repository:**
 
     ```bash
-    git clone https://github.com/yourusername/anime-manga-api.git
-    cd anime-manga-api
+    git clone https://github.com/Ripdiegozz/animeflix-backend.git
+    cd animeflix-backend
     ```
 
 2. **Install dependencies:**
@@ -42,8 +42,7 @@ Follow these steps to set up the development environment:
     Create a `.env` file in the root of the project and add necessary environment variables. Example:
 
     ```env
-    API_KEY=your_api_key_here
-    PORT=3000
+    JWT_SECRET=your_secret
     ```
 
 4. **Run the development server:**
@@ -56,7 +55,7 @@ Follow these steps to set up the development environment:
 
 5. **Retrieve system data or use for a small demo:**
 
-    Open your browser and navigate to `http://localhost:3000/api/anime?title=Naruto` to see a JSON response with data about Naruto.
+    Open your browser and navigate to `http://localhost:8080/api/v1/anime/naruto` to see a JSON response with data about Naruto.
 
 ### Running the Tests ⚙️
 
@@ -114,35 +113,24 @@ To deploy the project:
 - **Elysiajs:** Web framework used.
 - **Consumet:** Library for fetching anime and manga data.
 
-## Contributing 🙌
-
-Please read the [CONTRIBUTING.md](CONTRIBUTING.md) for details on our code of conduct and the process for submitting pull requests.
-
 ## Wiki 📖
 
-You can find more information on how to use this project in our [Wiki](https://github.com/yourusername/anime-manga-api/wiki).
-
-## Versioning 📌
-
-We use SemVer for versioning. For all available versions, see the tags in this repository.
+You can find more information on how to use this project in our [Wiki](https://github.com/Ripdiegozz/animeflix-backend/wiki).
 
 ## Authors ✒️
 
-- **Andrés Villanueva:** Initial work - [@villanuevand](https://github.com/villanuevand)
-- **Fulanito Detal:** Documentation - [@fulanitodetal](https://github.com/fulanitodetal)
-
-You can also check out the list of [all contributors](https://github.com/yourusername/anime-manga-api/contributors) who participated in this project.
+- **Diego Garcia:** Initial work - [@Ripdiegozz](https://github.com/Ripdiegozz)
 
 ## License 📄
 
-This project is licensed under the MIT License - see the [LICENSE.md](LICENSE.md) file for details.
+This project is licensed under the MIT License
 
-## Acknowledgments 🎉
+## Learnt in this project 🎉
 
-Thanks to everyone involved in this project. If you find this useful, feel free to buy us a beer 🍺 or a coffee ☕. You can also donate crypto to this address: `0xf253fc233333078436d111175e5a76a649890000`.
+...
 
 ### API Documentation
 
 The complete documentation for the endpoints is available at `/swagger`. There you will find everything well-documented.
 
-⌨️ with ❤️ by Villanuevand 😊
+⌨️ with ❤️ by Diego Garcia 😊
