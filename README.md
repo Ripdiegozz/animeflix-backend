@@ -56,6 +56,10 @@ Follow these steps to set up the development environment:
 5. **Retrieve system data or use for a small demo:**
 
     Open your browser and navigate to `http://localhost:8080/api/v1/anime/naruto` to see a JSON response with data about Naruto.
+   
+### API Documentation 📄
+
+The complete documentation for the endpoints is available at `http://localhost:8080/swagger`. There you will find everything well-documented.
 
 ### Running the Tests ⚙️
 
@@ -128,9 +132,5 @@ This project is licensed under the MIT License
 ## Learnt in this project 🎉
 
 ...
-
-### API Documentation
-
-The complete documentation for the endpoints is available at `/swagger`. There you will find everything well-documented.
 
 ⌨️ with ❤️ by Diego Garcia 😊
