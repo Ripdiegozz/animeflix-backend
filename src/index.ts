@@ -82,5 +82,5 @@ new Elysia()
 
 console.log("🦊 Animeflix REST API is running on http://localhost:8080/ 🚀");
 console.log(
-  "📚 Check the API documentation at http://localhost:8080/api/v1/swagger 📖"
+  "📚 Check the API documentation at http://localhost:8080/swagger 📖"
 );
