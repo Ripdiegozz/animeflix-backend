@@ -21,9 +21,7 @@ new Elysia()
   )
   // Enable Swagger for the API documentation at /api/v1/swagger
   .use(
-    swagger({
-      path: "/api/v1/swagger",
-    })
+    swagger()
   )
   .use(html())
   // Log all requests to the console
@@ -32,9 +30,9 @@ new Elysia()
   .get("/", () => Bun.file("src/static/index.html")) // Root route
   .get("/api/v1/anime/search", ({ query }) => {
     // Search an anime by query
-    const { q } = query;
+    const { q, page } = query;
 
-    return animeService.searchAnimeByQuery(q);
+    return animeService.searchAnimeByQuery(q, page);
   })
   .get("/api/v1/anime/episode/sources", ({ query }) => {
     // Get episode sources by name and episode number
@@ -82,7 +80,7 @@ new Elysia()
   })
   .listen(8080);
 
-console.log("🦊 AnimeFlix REST API is running on http://localhost:8080/ 🚀");
+console.log("🦊 Animeflix REST API is running on http://localhost:8080/ 🚀");
 console.log(
   "📚 Check the API documentation at http://localhost:8080/api/v1/swagger 📖"
 );

@@ -2,7 +2,7 @@ import { AnimeProvider } from "@/model/anime-model"
 import type { IAnimeResult, IEpisodeServer, ISearch, ISource } from "@consumet/extensions";
 
 interface IAnimeService {
-  searchAnimeByQuery(query: string | undefined): Promise<ISearch<IAnimeResult>>;
+  searchAnimeByQuery(query: string | undefined, page: string | undefined): Promise<ISearch<IAnimeResult>>;
 
   getEpisodeSourcesByNameAndEpisodeNumber(animeName: string | undefined, episodeNumber: string | undefined): Promise<ISource>;
   
@@ -25,10 +25,12 @@ export class AnimeService implements IAnimeService {
 
   private animeProvider = new AnimeProvider();
 
-  searchAnimeByQuery = async (query: string | undefined) => {
+  searchAnimeByQuery = async (query: string | undefined, page: string | undefined) => {
     if (!query) throw new Error('Query is required');
+    if (!page) page = '1';
+    if (isNaN(parseInt(page))) throw new Error('Page must be a number');
 
-    return await this.animeProvider.searchAnime(query);
+    return await this.animeProvider.searchAnime(query, parseInt(page));
   }
 
   getEpisodeSourcesByNameAndEpisodeNumber = async (animeName: string | undefined, episodeNumber: string | undefined): Promise<any> => {
@@ -46,18 +48,21 @@ export class AnimeService implements IAnimeService {
 
   getRecentEpisodes = async (page: string | undefined) => {
     if (!page) page = '1'
+    if (isNaN(parseInt(page))) throw new Error('Page must be a number');
 
     return await this.animeProvider.fetchRecentEpisodes(parseInt(page));
   }
 
   getTopAiring = async (page: string | undefined) => {
     if (!page) page = '1'
+    if (isNaN(parseInt(page))) throw new Error('Page must be a number');
 
     return await this.animeProvider.fetchTopAnimesAiring(parseInt(page));
   }
 
   getAnimeList = async (page: string | undefined) => {
     if (!page) page = '1'
+    if (isNaN(parseInt(page))) throw new Error('Page must be a number');
 
     return await this.animeProvider.fetchAnimeList(parseInt(page));
   }

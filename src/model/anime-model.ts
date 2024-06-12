@@ -11,7 +11,7 @@ export interface IAnimeProvider {
 
   // Declare the method to search for an anime by name
   // It should return a promise of ISearch<IAnimeResult>
-  searchAnime(animeName: string): Promise<ISearch<IAnimeResult>>;
+  searchAnime(animeName: string, page: number): Promise<ISearch<IAnimeResult>>;
 
   // Fetch recent anime episodes
   fetchRecentEpisodes(page: number): Promise<ISearch<IAnimeResult>>
@@ -49,9 +49,9 @@ export class AnimeProvider implements IAnimeProvider{
     }
   }
 
-  searchAnime(animeName: string): Promise<ISearch<IAnimeResult>> {
+  searchAnime(animeName: string, page: number): Promise<ISearch<IAnimeResult>> {
     try {
-      return this.provider.search(animeName);
+      return this.provider.search(animeName, page);
     } catch (error) {
       throw new Error(`Failed to search anime by name: ${animeName}`);
     }
