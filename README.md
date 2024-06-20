@@ -130,7 +130,15 @@ You can find more information on how to use this project in our [Wiki](https://g
 This project is licensed under the MIT License
 
 ## Learnt in this project 🎉
+  - Bun.js
+  - Elysia.js
+  - Singleton Design Pattern
+  - MVC
+  - TypeScript
+  - OOP
 
-...
+## TODO ✔️
+  - Implement JWT and Auth
+
 
 ⌨️ with ❤️ by Diego Garcia 😊
