@@ -1,5 +1,5 @@
 import { t } from "elysia";
-import { App } from "@/index";
+import { App } from "@/infrastructure/web/index";
 import { MangaService } from "@/services/manga-service";
 
 // Inject the manga service

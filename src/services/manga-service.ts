@@ -1,4 +1,4 @@
-import { MangaProvider } from "@/model/manga-model";
+import { MangaProvider } from "@/domain/model/manga-model";
 import type { IMangaInfo, IMangaResult, ISearch } from "@consumet/extensions";
 
 export interface IMangaService {

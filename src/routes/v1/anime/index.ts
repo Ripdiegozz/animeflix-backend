@@ -1,5 +1,5 @@
 import { t } from "elysia";
-import { App } from "@/index";
+import { App } from "@/infrastructure/web/index";
 import { AnimeService } from "@/services/anime-service";
 
 // Inject services availables in the application

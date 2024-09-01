@@ -1,6 +1,6 @@
 import os from "node:os";
 
-import type { App } from "@/index";
+import type { App } from "@/infrastructure/web/index";
 
 export default (app: typeof App) => {
   app.get("/", () => ({ status: "ok" }));

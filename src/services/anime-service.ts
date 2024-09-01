@@ -1,4 +1,4 @@
-import { AnimeProvider } from "@/model/anime-model"
+import { AnimeProvider } from "@/domain/model/anime-model"
 import type { IAnimeResult, IEpisodeServer, ISearch, ISource } from "@consumet/extensions";
 
 interface IAnimeService {
