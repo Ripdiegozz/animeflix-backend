@@ -42,13 +42,12 @@ export class AnimeProvider implements IAnimeProvider {
    * @throws An error if the episode sources cannot be fetched.
    */
   fetchEpisodeSourcesByNameAndEpisodeNumber(
-    animeName: string,
-    episodeNumber: string
+    episodeId: string
   ): Promise<ISource> {
     try {
-      return this.provider.fetchEpisodeSources(`${animeName}-episode-${episodeNumber}`);
+      return this.provider.fetchEpisodeSources(episodeId);
     } catch (error) {
-      throw new Error(`Failed to fetch episode sources for ${animeName} episode ${episodeNumber}`);
+      throw new Error(`Failed to fetch episode sources for ${episodeId}`);
     }
   }
 

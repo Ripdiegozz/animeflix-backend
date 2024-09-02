@@ -18,7 +18,7 @@ export default (app: typeof App) => {
        * Search for an anime by query.
        * @param query - The query parameters.
        * @returns The search results.
-      */
+       */
       // @ts-expect-error - Ignore the error because cannot cast the response to a specific schema
       ({ query }) => {
         const { q, page } = query;
@@ -72,20 +72,15 @@ export default (app: typeof App) => {
        * @returns The episode sources.
        */
       ({ query }) => {
-        const { animeName, episodeNumber } = query;
+        const { episodeId } = query;
 
-        return animeService.getEpisodeSourcesByNameAndEpisodeNumber(
-          animeName,
-          episodeNumber
-        );
+        return animeService.getEpisodeSourcesByNameAndEpisodeNumber(episodeId);
       },
       {
         query: t.Object({
-          animeName: t.String({
-            description: "The anime id to search for. Ex: one-piece",
-          }),
-          episodeNumber: t.String({
-            description: "The episode number to search for. Ex: 1",
+          episodeId: t.String({
+            description:
+              "The episode id to search for. It is composed by 'anime-id'-episode-'episode-number' Ex: one-piece-episode-1",
           }),
         }),
         response: {
@@ -163,7 +158,7 @@ export default (app: typeof App) => {
        * Get recent episodes.
        * @param query - The query parameters.
        * @returns The recent episodes.
-      */
+       */
       // @ts-expect-error - Ignore the error because cannot cast the response to a specific schema
       ({ query }) => {
         const { page } = query;
@@ -211,7 +206,7 @@ export default (app: typeof App) => {
        * Get top airing animes.
        * @param query - The query parameters.
        * @returns The top airing animes.
-      */
+       */
       // @ts-expect-error - Ignore the error because cannot cast the response to a specific schema
       ({ query }) => {
         const { page } = query;
@@ -260,7 +255,7 @@ export default (app: typeof App) => {
        * Get anime list.
        * @param query - The query parameters.
        * @returns The anime list.
-      */
+       */
       // @ts-expect-error - Ignore the error because cannot cast the response to a specific schema
       ({ query }) => {
         const { page } = query;
@@ -308,7 +303,7 @@ export default (app: typeof App) => {
        * Get anime info by name.
        * @param params - The route parameters.
        * @returns The anime info.
-      */
+       */
       // @ts-expect-error - Ignore the error because cannot cast the response to a specific schema
       ({ params }) => {
         const { animeName } = params;

@@ -1,12 +1,26 @@
-import { AnimeProvider } from "@/domain/model/anime-model"
-import type { IAnimeResult, IEpisodeServer, ISearch, ISource } from "@consumet/extensions";
+import { AnimeProvider } from "@/domain/model/anime-model";
+import type {
+  IAnimeResult,
+  IEpisodeServer,
+  ISearch,
+  ISource,
+} from "@consumet/extensions";
 
 interface IAnimeService {
-  searchAnimeByQuery(query: string | undefined, page: string | undefined): Promise<ISearch<IAnimeResult>>;
+  searchAnimeByQuery(
+    query: string | undefined,
+    page: string | undefined
+  ): Promise<ISearch<IAnimeResult>>;
 
-  getEpisodeSourcesByNameAndEpisodeNumber(animeName: string | undefined, episodeNumber: string | undefined): Promise<ISource>;
-  
-  getEpisodeServersByEpisodeId(animeName: string | undefined, episodeNumber: string | undefined): Promise<IEpisodeServer[]>;
+  getEpisodeSourcesByNameAndEpisodeNumber(
+    animeName: string | undefined,
+    episodeNumber: string | undefined
+  ): Promise<ISource>;
+
+  getEpisodeServersByEpisodeId(
+    animeName: string | undefined,
+    episodeNumber: string | undefined
+  ): Promise<IEpisodeServer[]>;
 
   getRecentEpisodes(page: string | undefined): Promise<ISearch<IAnimeResult>>;
 
@@ -25,50 +39,58 @@ export class AnimeService implements IAnimeService {
 
   private animeProvider = new AnimeProvider();
 
-  searchAnimeByQuery = async (query: string | undefined, page: string | undefined) => {
-    if (!query) throw new Error('Query is required');
-    if (!page) page = '1';
-    if (isNaN(parseInt(page))) throw new Error('Page must be a number');
+  searchAnimeByQuery = async (
+    query: string | undefined,
+    page: string | undefined
+  ) => {
+    if (!query) throw new Error("Query is required");
+    if (!page) page = "1";
+    if (isNaN(parseInt(page))) throw new Error("Page must be a number");
 
     return await this.animeProvider.searchAnime(query, parseInt(page));
-  }
+  };
 
-  getEpisodeSourcesByNameAndEpisodeNumber = async (animeName: string | undefined, episodeNumber: string | undefined): Promise<any> => {
-    if (!animeName) throw new Error('Anime name is required');
-    if (!episodeNumber) throw new Error('Episode number is required');
+  getEpisodeSourcesByNameAndEpisodeNumber = async (
+    episodeId: string
+  ): Promise<any> => {
+    if (!episodeId) throw new Error("episodeId is required");
 
-    return await this.animeProvider.fetchEpisodeSourcesByNameAndEpisodeNumber(animeName, episodeNumber);
-  }
+    return await this.animeProvider.fetchEpisodeSourcesByNameAndEpisodeNumber(
+      episodeId
+    );
+  };
 
-  getEpisodeServersByEpisodeId = async (episodeId: string | undefined): Promise<IEpisodeServer[]> => {
-    if (!episodeId) throw new Error('Anime name is required');
+  getEpisodeServersByEpisodeId = async (
+    episodeId: string | undefined
+  ): Promise<IEpisodeServer[]> => {
+    if (!episodeId) throw new Error("Anime name is required");
 
     return await this.animeProvider.fetchEpisodeServersByEpisodeId(episodeId);
-  }
+  };
 
   getRecentEpisodes = async (page: string | undefined) => {
-    if (!page) page = '1'
-    if (isNaN(parseInt(page))) throw new Error('Page must be a number');
+    if (!page) page = "1";
+    if (isNaN(parseInt(page))) throw new Error("Page must be a number");
 
     return await this.animeProvider.fetchRecentEpisodes(parseInt(page));
-  }
+  };
 
   getTopAiring = async (page: string | undefined) => {
-    if (!page) page = '1'
-    if (isNaN(parseInt(page))) throw new Error('Page must be a number');
+    if (!page) page = "1";
+    if (isNaN(parseInt(page))) throw new Error("Page must be a number");
 
     return await this.animeProvider.fetchTopAnimesAiring(parseInt(page));
-  }
+  };
 
   getAnimeList = async (page: string | undefined) => {
-    if (!page) page = '1'
-    if (isNaN(parseInt(page))) throw new Error('Page must be a number');
+    if (!page) page = "1";
+    if (isNaN(parseInt(page))) throw new Error("Page must be a number");
 
     return await this.animeProvider.fetchAnimeList(parseInt(page));
-  }
+  };
 
   getAnimeInfo(animeUrl: string | undefined): Promise<IAnimeResult> {
-    if (!animeUrl) throw new Error('Anime URL is required');
+    if (!animeUrl) throw new Error("Anime URL is required");
 
     return this.animeProvider.fetchAnimeInfo(animeUrl);
   }
